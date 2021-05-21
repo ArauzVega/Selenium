@@ -76,11 +76,15 @@ public class PrincipalTest {
 							row.getCell(5)  + " ------ " +
 							row.getCell(6)  + " ------ " +
 							row.getCell(7)  + " ------ " +
-							row.getCell(8));
+							row.getCell(8)  + " ------ " +
+							row.getCell(9)  + " ------ " +
+							row.getCell(10)  + " ------ " +
+							row.getCell(11));
 					
 					//Sending the cells with the data that the program will need
 					perform.Perform(row.getCell(3), row.getCell(4), row.getCell(5), 
-							row.getCell(6), row.getCell(7), row.getCell(8), OUT);
+							row.getCell(6), row.getCell(7), row.getCell(8), row.getCell(9), 
+							row.getCell(10), row.getCell(11), OUT);
 				} else {
 					System.out.println("Step: " + row.getRowNum());
 					System.out.println("New test case: " + row.getCell(0) + " ------ " +
@@ -91,11 +95,15 @@ public class PrincipalTest {
 							row.getCell(5)  + " ------ " +
 							row.getCell(6)  + " ------ " +
 							row.getCell(7)  + " ------ " +
-							row.getCell(8));
+							row.getCell(8)  + " ------ " +
+							row.getCell(9)  + " ------ " +
+							row.getCell(10)  + " ------ " +
+							row.getCell(11));
 					
 					//Sending the cells with the data that the program will need
 					perform.Perform(row.getCell(3), row.getCell(4), row.getCell(5), 
-							row.getCell(6), row.getCell(7), row.getCell(8), OUT);
+							row.getCell(6), row.getCell(7), row.getCell(8), row.getCell(9), 
+							row.getCell(10), row.getCell(11), OUT);
 				}
 			}
 		}

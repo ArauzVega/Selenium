@@ -1,17 +1,25 @@
 package KEYWORDSFramework;
 
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -22,7 +30,8 @@ public class KeywordsOperations {
 	
 	//Method with the keywords to use in the workflow of test
 	public void Perform(Cell Action, Cell ObjectType, Cell Object, Cell Locator, Cell Url,
-			Cell TestData, ArrayList<ArrayList<String>> DataTimes) throws Exception{
+			Cell TestData, Cell Condition, Cell Element, Cell LocatorOfElement, 
+			ArrayList<ArrayList<String>> DataTimes) throws Exception{
 		
 		switch (Action.toString().toUpperCase()) {
 		//To instance the chrome driver to run the tests
@@ -71,6 +80,8 @@ public class KeywordsOperations {
 			
 			int explicitTime = GetTimeToWait(DataTimes, ObjectType.toString());
 			
+			ExplicitWaitWithCondition(Condition.toString(), Element.toString(), 
+					LocatorOfElement.toString(), explicitTime);
 			
 			break;
 			
@@ -92,6 +103,8 @@ public class KeywordsOperations {
 			      }
 			}
 			
+			MyFluentWaitFunction(Condition.toString(), Element.toString(), LocatorOfElement.toString(), 
+					timeToWait, frecuencyTime);
 			
 			break;
 			
@@ -121,7 +134,7 @@ public class KeywordsOperations {
 		case "HOVER-OVER":
 			Actions hoverOver = new Actions(driver);
 			hoverOver.moveToElement(driver.findElement(FindObject(
-					ObjectType.toString(), Object.toString()))).build().perform();
+					ObjectType.toString(), Object.toString()))).click().build().perform();
 			break;
 			
 		//To perform a click on an element using javaScript	
@@ -208,6 +221,43 @@ public class KeywordsOperations {
 		}
 		
 		return time;
+	}
+	
+	public void ExplicitWaitWithCondition(String Condition, String Element, String Locator, int Time) 
+			throws Exception {
+		switch (Condition) {
+		case "ELEMENTTOBECLICKABLE":
+			WebElement elementWanted = new WebDriverWait(driver, Time)
+				.until(ExpectedConditions.elementToBeClickable(FindObject(Element, Locator)));
+			
+			elementWanted.click();
+			break;
+
+		default:
+			break;
+		}
+	}
+	
+	public void MyFluentWaitFunction(String Condition, String Element, String Locator, 
+			int timeToWait, int frecuencyTime) throws Exception {
+		
+		
+		Wait<WebDriver> waitObject = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofSeconds(timeToWait))
+				.pollingEvery(Duration.ofSeconds(frecuencyTime))
+				.ignoring(NoSuchElementException.class);
+
+		switch (Condition) {
+		case "ELEMENTTOBECLICKABLE":
+			WebElement elementToWait = waitObject.until(ExpectedConditions.
+					elementToBeClickable(FindObject(Element, Locator)));
+			elementToWait.click();
+			break;
+
+		default:
+			break;
+		}
+		
 	}
 	
 }
