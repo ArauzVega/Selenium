@@ -8,13 +8,6 @@
           <include name="Principal_testcase"/>
         </methods>
       </class> <!-- KEYWORDSFramework.Test.PrincipalTest -->
-      <class name="POMFramework.Test.LoginTest">
-        <methods>
-          <include name="Quit"/>
-          <include name="SetUp"/>
-          <include name="LoginSuccess_testcase"/>
-        </methods>
-      </class> <!-- POMFramework.Test.LoginTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

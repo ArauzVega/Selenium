@@ -1,5 +1,8 @@
 package KEYWORDSFramework;
 
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -19,7 +22,8 @@ public class KeywordsOperations {
 	
 	//Method with the keywords to use in the workflow of test
 	public void Perform(Cell Action, Cell ObjectType, Cell Object, Cell Locator, Cell Url,
-			Cell TestData) throws Exception{
+			Cell TestData, ArrayList<ArrayList<String>> DataTimes) throws Exception{
+		
 		switch (Action.toString().toUpperCase()) {
 		//To instance the chrome driver to run the tests
 		case "OPEN-CHROME":
@@ -56,15 +60,38 @@ public class KeywordsOperations {
 		//To use the implicit wait
 		case "IMPLICIT-WAIT":
 			
+			int implicitTime = GetTimeToWait(DataTimes, ObjectType.toString());
+			
+			driver.manage().timeouts().implicitlyWait(implicitTime, TimeUnit.SECONDS);
+			
 			break;
 			
 		//To use the explicit wait
 		case "EXPLICIT-WAIT":
-				
+			
+			int explicitTime = GetTimeToWait(DataTimes, ObjectType.toString());
+			
+			
 			break;
 			
 		//To use the fluent wait
 		case "FLUENT-WAIT":
+			
+			int timeToWait = 0;
+			int frecuencyTime = 0;
+			
+			for(ArrayList<String> data: DataTimes) {
+				String[] myArray = new String[data.size()];
+				data.toArray(myArray);
+
+			      for(int i=0; i<myArray.length; i++){
+			         if(myArray[i].equals(ObjectType.toString())) {
+			        	 timeToWait = Integer.parseInt(myArray[2]);
+			        	 frecuencyTime = Integer.parseInt(myArray[3]);
+			         }
+			      }
+			}
+			
 			
 			break;
 			
@@ -164,6 +191,23 @@ public class KeywordsOperations {
 		}
 		
 		throw new Exception("Missig the object type");
+	}
+	
+	public int GetTimeToWait(ArrayList<ArrayList<String>> dataTimes, String ObjectType) {
+		int time = 0;
+		
+		for(ArrayList<String> data: dataTimes) {
+			String[] myArray = new String[data.size()];
+			data.toArray(myArray);
+
+		      for(int i=0; i<myArray.length; i++){
+		         if(myArray[i].equals(ObjectType)) {
+		        	 time = Integer.parseInt(myArray[2]);
+		         }
+		      }
+		}
+		
+		return time;
 	}
 	
 }
