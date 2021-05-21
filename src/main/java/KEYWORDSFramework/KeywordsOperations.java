@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -156,6 +157,12 @@ public class KeywordsOperations {
 				driver.switchTo().window(handle1);
 			}
 			break;
+		
+		//To switch to an Iframe
+		case "SWITCH-TO-IFRAME":
+			driver.switchTo().frame(driver.findElement(
+					FindObject(ObjectType.toString(), Object.toString())));
+			break;
 			
 		//To drag an element and drop it into another element
 		case "DRAG-AND-DROP":
@@ -240,11 +247,25 @@ public class KeywordsOperations {
 		switch (Condition) {
 		case "ELEMENTTOBECLICKABLE":
 			WebElement elementWanted = new WebDriverWait(driver, Time)
-				.until(ExpectedConditions.elementToBeClickable(FindObject(Element, Locator)));
+				.until(ExpectedConditions.elementToBeClickable(driver.findElement(FindObject(Element, Locator))));
 			
 			elementWanted.click();
 			break;
-
+			
+		case "ALERTISPRESENT":
+			Alert alertIsPresent = new WebDriverWait(driver, Time)
+				.until(ExpectedConditions.alertIsPresent());
+			
+			alertIsPresent.accept();
+			break;
+		
+		case "VISIBILITYOF":
+			WebElement elementVisible = new WebDriverWait(driver, Time)
+				.until(ExpectedConditions.visibilityOf(driver.findElement(FindObject(Element, Locator))));
+			
+			elementVisible.click();
+			break;
+			
 		default:
 			break;
 		}
@@ -263,8 +284,22 @@ public class KeywordsOperations {
 		switch (Condition) {
 		case "ELEMENTTOBECLICKABLE":
 			WebElement elementToWait = waitObject.until(ExpectedConditions.
-					elementToBeClickable(FindObject(Element, Locator)));
+					elementToBeClickable(driver.findElement(FindObject(Element, Locator))));
 			elementToWait.click();
+			break;
+
+		case "ALERTISPRESENT":
+			WebElement alertIsPresent = waitObject.until(ExpectedConditions.
+					elementToBeClickable(driver.findElement(FindObject(Element, Locator))));
+			
+			alertIsPresent.click();
+			break;
+
+		case "VISIBILITYOF":
+			WebElement elementVisible = waitObject.until(ExpectedConditions.
+					elementToBeClickable(driver.findElement(FindObject(Element, Locator))));
+			
+			elementVisible.click();
 			break;
 
 		default:
