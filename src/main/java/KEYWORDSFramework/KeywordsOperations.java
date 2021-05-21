@@ -30,7 +30,8 @@ public class KeywordsOperations {
 	
 	//Method with the keywords to use in the workflow of test
 	public void Perform(Cell Action, Cell ObjectType, Cell Object, Cell Locator, Cell Url,
-			Cell TestData, Cell Condition, Cell Element, Cell LocatorOfElement, 
+			Cell TestData, Cell Condition, Cell Element, Cell LocatorOfElement,
+			Cell ObjectTypeFrom, Cell LocatorFrom, Cell ObjectTypeTo, Cell LocatorTo,
 			ArrayList<ArrayList<String>> DataTimes) throws Exception{
 		
 		switch (Action.toString().toUpperCase()) {
@@ -69,6 +70,7 @@ public class KeywordsOperations {
 		//To use the implicit wait
 		case "IMPLICIT-WAIT":
 			
+			//Call the method to get the time of wait
 			int implicitTime = GetTimeToWait(DataTimes, ObjectType.toString());
 			
 			driver.manage().timeouts().implicitlyWait(implicitTime, TimeUnit.SECONDS);
@@ -78,8 +80,10 @@ public class KeywordsOperations {
 		//To use the explicit wait
 		case "EXPLICIT-WAIT":
 			
+			//Call the method to get the time of wait
 			int explicitTime = GetTimeToWait(DataTimes, ObjectType.toString());
 			
+			//Call the method to perform the explicit wait based on the expected condition
 			ExplicitWaitWithCondition(Condition.toString(), Element.toString(), 
 					LocatorOfElement.toString(), explicitTime);
 			
@@ -91,6 +95,7 @@ public class KeywordsOperations {
 			int timeToWait = 0;
 			int frecuencyTime = 0;
 			
+			//Getting the time of the fluent wait from the array list of data times
 			for(ArrayList<String> data: DataTimes) {
 				String[] myArray = new String[data.size()];
 				data.toArray(myArray);
@@ -103,6 +108,7 @@ public class KeywordsOperations {
 			      }
 			}
 			
+			//Call the method to perform the fluent wait based on the expected condition
 			MyFluentWaitFunction(Condition.toString(), Element.toString(), LocatorOfElement.toString(), 
 					timeToWait, frecuencyTime);
 			
@@ -153,7 +159,10 @@ public class KeywordsOperations {
 			
 		//To drag an element and drop it into another element
 		case "DRAG-AND-DROP":
+			Actions DragAndDropAction = new Actions(driver);
 			
+			DragAndDropAction.dragAndDrop(driver.findElement(FindObject(ObjectTypeFrom.toString(), LocatorFrom.toString())),
+					driver.findElement(FindObject(ObjectTypeTo.toString(), LocatorTo.toString())));
 			break;
 			
 		//To set the window size
@@ -206,6 +215,7 @@ public class KeywordsOperations {
 		throw new Exception("Missig the object type");
 	}
 	
+	//This function is to get the type of wait and return the time assigned to the type
 	public int GetTimeToWait(ArrayList<ArrayList<String>> dataTimes, String ObjectType) {
 		int time = 0;
 		
@@ -223,6 +233,8 @@ public class KeywordsOperations {
 		return time;
 	}
 	
+	
+	//This method is to perform the explicit wait for an element based on the expected condition
 	public void ExplicitWaitWithCondition(String Condition, String Element, String Locator, int Time) 
 			throws Exception {
 		switch (Condition) {
@@ -238,10 +250,11 @@ public class KeywordsOperations {
 		}
 	}
 	
+	//This method is to perform the fluent wait for an element based on the expected condition
 	public void MyFluentWaitFunction(String Condition, String Element, String Locator, 
 			int timeToWait, int frecuencyTime) throws Exception {
 		
-		
+		//Instance of the Fluent wait to use it
 		Wait<WebDriver> waitObject = new FluentWait<WebDriver>(driver)
 				.withTimeout(Duration.ofSeconds(timeToWait))
 				.pollingEvery(Duration.ofSeconds(frecuencyTime))
