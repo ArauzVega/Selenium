@@ -14,12 +14,14 @@ public class PrincipalTest {
 	@Description("Principal test to run the workflow")
 	public void Principal_testcase() throws Exception {
 		
+		//Instances of the classes
 		KeywordsOperations perform = new KeywordsOperations();
-		
 		ReadFromFile readFile = new ReadFromFile();
 		
+		//Getting the data from the file
 		XSSFSheet sheet = readFile.ReadData("TestData.xlsx", "Sheet1");
 		
+		//Counting the rows with the important data for the test
 		int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
 		
 		for(int i = 1; i < rowCount + 1; i++) {
@@ -38,6 +40,7 @@ public class PrincipalTest {
 							row.getCell(7)  + " ------ " +
 							row.getCell(8));
 					
+					//Sending the cells with the data that the program will need
 					perform.Perform(row.getCell(3), row.getCell(4), row.getCell(5), 
 							row.getCell(6), row.getCell(7), row.getCell(8));
 				} else {
@@ -51,6 +54,7 @@ public class PrincipalTest {
 							row.getCell(7)  + " ------ " +
 							row.getCell(8));
 					
+					//Sending the cells with the data that the program will need
 					perform.Perform(row.getCell(3), row.getCell(4), row.getCell(5), 
 							row.getCell(6), row.getCell(7), row.getCell(8));
 				}
