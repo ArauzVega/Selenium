@@ -285,19 +285,19 @@ public class KeywordsOperations {
 		case "ELEMENTTOBECLICKABLE":
 			WebElement elementToWait = waitObject.until(ExpectedConditions.
 					elementToBeClickable(driver.findElement(FindObject(Element, Locator))));
+			
 			elementToWait.click();
 			break;
 
 		case "ALERTISPRESENT":
-			WebElement alertIsPresent = waitObject.until(ExpectedConditions.
-					elementToBeClickable(driver.findElement(FindObject(Element, Locator))));
+			Alert alertIsPresent = waitObject.until(ExpectedConditions.alertIsPresent());
 			
-			alertIsPresent.click();
+			alertIsPresent.accept();
 			break;
 
 		case "VISIBILITYOF":
 			WebElement elementVisible = waitObject.until(ExpectedConditions.
-					elementToBeClickable(driver.findElement(FindObject(Element, Locator))));
+					visibilityOf(driver.findElement(FindObject(Element, Locator))));
 			
 			elementVisible.click();
 			break;
