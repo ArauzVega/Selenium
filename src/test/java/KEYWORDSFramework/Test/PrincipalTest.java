@@ -28,10 +28,9 @@ public class PrincipalTest {
 			Row row = sheet.getRow(i);
 			
 			if(row != null) {
-				if(row.getCell(0) != null) {
-					System.out.println("Row: " + row.getRowNum());
-					System.out.println(row.getCell(0) + " ------ " +
-							row.getCell(1)  + " ------ " +
+				if(row.getCell(0) == null || row.getCell(0).toString().length() == 0) {
+					System.out.println("Step: " + row.getRowNum());
+					System.out.println(row.getCell(1)  + " ------ " +
 							row.getCell(2) + " ------ " +
 							row.getCell(3)  + " ------ " +
 							row.getCell(4)  + " ------ " +
@@ -44,8 +43,9 @@ public class PrincipalTest {
 					perform.Perform(row.getCell(3), row.getCell(4), row.getCell(5), 
 							row.getCell(6), row.getCell(7), row.getCell(8));
 				} else {
-					System.out.println("Row: " + row.getRowNum());
-					System.out.println(row.getCell(1)  + " ------ " +
+					System.out.println("Step: " + row.getRowNum());
+					System.out.println("New test case: " + row.getCell(0) + " ------ " +
+							row.getCell(1)  + " ------ " +
 							row.getCell(2)  + " ------ " +
 							row.getCell(3)  + " ------ " +
 							row.getCell(4)  + " ------ " +

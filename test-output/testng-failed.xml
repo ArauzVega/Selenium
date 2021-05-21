@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="classes" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" parallel="classes" name="Test(failed)">
+    <classes>
+      <class name="KEYWORDSFramework.Test.PrincipalTest">
+        <methods>
+          <include name="Principal_testcase"/>
+        </methods>
+      </class> <!-- KEYWORDSFramework.Test.PrincipalTest -->
+      <class name="POMFramework.Test.LoginTest">
+        <methods>
+          <include name="Quit"/>
+          <include name="SetUp"/>
+          <include name="LoginSuccess_testcase"/>
+        </methods>
+      </class> <!-- POMFramework.Test.LoginTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
