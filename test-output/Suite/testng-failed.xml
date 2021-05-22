@@ -3,11 +3,13 @@
 <suite parallel="classes" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" parallel="classes" name="Test(failed)">
     <classes>
-      <class name="KEYWORDSFramework.Test.PrincipalTest">
+      <class name="POMFramework.Test.LoginTest">
         <methods>
-          <include name="Principal_testcase"/>
+          <include name="SeeManageReviewsMyReviews"/>
+          <include name="Quit"/>
+          <include name="SetUp"/>
         </methods>
-      </class> <!-- KEYWORDSFramework.Test.PrincipalTest -->
+      </class> <!-- POMFramework.Test.LoginTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

@@ -2,12 +2,8 @@ package POMFramework.Test;
 
 import java.util.concurrent.TimeUnit;
 
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentReports;
@@ -40,7 +36,7 @@ public class LoginTest extends TestBase {
 		Initialize(url);
 		
 		extentReport = new ExtentReports();
-		sparkReporter = new ExtentSparkReporter("extent-reports/report.html");
+		sparkReporter = new ExtentSparkReporter("extent-reports/POM/POMreport.html");
 		extentReport.attachReporter(sparkReporter);
 	}
 	

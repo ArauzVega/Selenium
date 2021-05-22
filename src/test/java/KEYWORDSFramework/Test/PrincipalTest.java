@@ -6,13 +6,31 @@ import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import KEYWORDSFramework.KeywordsOperations;
 import KEYWORDSFramework.ReadFromFile;
 import io.qameta.allure.Description;
 
 public class PrincipalTest {
+	
+	ExtentReports extentReport;
+	ExtentSparkReporter sparkReporter;
+	ExtentTest test;
+	
+	@BeforeSuite
+	public void SetUp() {
+		//Extent Report instances
+		extentReport = new ExtentReports();;
+		sparkReporter = new ExtentSparkReporter("extent-reports/KEYWORDS/KEYWORDSreport.html");
+		extentReport.attachReporter(sparkReporter);
+	}
 	
 	@Test
 	@Description("Principal test to run the workflow")
@@ -91,6 +109,8 @@ public class PrincipalTest {
 							row.getCell(10), row.getCell(11), row.getCell(12), row.getCell(13), 
 							row.getCell(14), row.getCell(15),  OUT);
 				} else {
+					test = extentReport.createTest(row.getCell(0).toString());
+					
 					System.out.println("Step: " + row.getRowNum());
 					System.out.println("New test case: " + row.getCell(0) + " ------ " +
 							row.getCell(1) + " ------ " +
@@ -117,5 +137,10 @@ public class PrincipalTest {
 				}
 			}
 		}
+	}
+	
+	@AfterSuite
+	public void Flush() {
+		extentReport.flush();
 	}
 }

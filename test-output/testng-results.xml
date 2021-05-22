@@ -2,37 +2,45 @@
 <testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-05-22T00:15:22Z" name="Suite" finished-at="2021-05-22T00:16:02Z" duration-ms="39645">
+  <suite started-at="2021-05-22T01:20:07Z" name="Suite" finished-at="2021-05-22T01:20:46Z" duration-ms="38837">
     <groups>
     </groups>
-    <test started-at="2021-05-22T00:15:22Z" name="Test" finished-at="2021-05-22T00:16:02Z" duration-ms="39645">
+    <test started-at="2021-05-22T01:20:07Z" name="Test" finished-at="2021-05-22T01:20:46Z" duration-ms="38837">
       <class name="KEYWORDSFramework.Test.PrincipalTest">
-        <test-method signature="Principal_testcase()[pri:0, instance:KEYWORDSFramework.Test.PrincipalTest@58c34bb3]" started-at="2021-05-22T00:15:22Z" name="Principal_testcase" finished-at="2021-05-22T00:15:43Z" duration-ms="21001" status="PASS">
+        <test-method signature="Principal_testcase()[pri:0, instance:KEYWORDSFramework.Test.PrincipalTest@56a4479a]" started-at="2021-05-22T01:20:07Z" name="Principal_testcase" finished-at="2021-05-22T01:20:28Z" duration-ms="20604" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Principal_testcase -->
       </class> <!-- KEYWORDSFramework.Test.PrincipalTest -->
       <class name="POMFramework.Test.LoginTest">
-        <test-method is-config="true" signature="SetUp()[pri:0, instance:POMFramework.Test.LoginTest@73163d48]" started-at="2021-05-22T00:15:11Z" name="SetUp" finished-at="2021-05-22T00:15:22Z" duration-ms="10821" status="PASS">
+        <test-method is-config="true" signature="SetUp()[pri:0, instance:POMFramework.Test.LoginTest@58c34bb3]" started-at="2021-05-22T01:19:56Z" name="SetUp" finished-at="2021-05-22T01:20:07Z" duration-ms="11256" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SetUp -->
-        <test-method signature="LoginSuccess()[pri:1, instance:POMFramework.Test.LoginTest@73163d48]" started-at="2021-05-22T00:15:44Z" name="LoginSuccess" finished-at="2021-05-22T00:15:52Z" duration-ms="8791" status="PASS">
+        <test-method is-config="true" signature="SetUp()[pri:0, instance:KEYWORDSFramework.Test.PrincipalTest@56a4479a]" started-at="2021-05-22T01:20:07Z" name="SetUp" finished-at="2021-05-22T01:20:07Z" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SetUp -->
+        <test-method signature="LoginSuccess()[pri:1, instance:POMFramework.Test.LoginTest@58c34bb3]" started-at="2021-05-22T01:20:28Z" name="LoginSuccess" finished-at="2021-05-22T01:20:37Z" duration-ms="8885" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LoginSuccess -->
-        <test-method signature="EditMyInfo()[pri:2, instance:POMFramework.Test.LoginTest@73163d48]" started-at="2021-05-22T00:15:52Z" name="EditMyInfo" finished-at="2021-05-22T00:16:01Z" duration-ms="8370" status="PASS">
+        <test-method signature="EditMyInfo()[pri:2, instance:POMFramework.Test.LoginTest@58c34bb3]" started-at="2021-05-22T01:20:37Z" name="EditMyInfo" finished-at="2021-05-22T01:20:45Z" duration-ms="7871" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- EditMyInfo -->
-        <test-method signature="SeeManageReviewsMyReviews()[pri:3, instance:POMFramework.Test.LoginTest@73163d48]" started-at="2021-05-22T00:16:01Z" name="SeeManageReviewsMyReviews" finished-at="2021-05-22T00:16:02Z" duration-ms="1137" status="PASS">
+        <test-method signature="SeeManageReviewsMyReviews()[pri:3, instance:POMFramework.Test.LoginTest@58c34bb3]" started-at="2021-05-22T01:20:45Z" name="SeeManageReviewsMyReviews" finished-at="2021-05-22T01:20:46Z" duration-ms="1094" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SeeManageReviewsMyReviews -->
-        <test-method is-config="true" signature="Quit()[pri:0, instance:POMFramework.Test.LoginTest@73163d48]" started-at="2021-05-22T00:16:02Z" name="Quit" finished-at="2021-05-22T00:16:04Z" duration-ms="1923" status="PASS">
+        <test-method is-config="true" signature="Quit()[pri:0, instance:POMFramework.Test.LoginTest@58c34bb3]" started-at="2021-05-22T01:20:46Z" name="Quit" finished-at="2021-05-22T01:20:48Z" duration-ms="1928" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Quit -->
+        <test-method is-config="true" signature="Flush()[pri:0, instance:KEYWORDSFramework.Test.PrincipalTest@56a4479a]" started-at="2021-05-22T01:20:48Z" name="Flush" finished-at="2021-05-22T01:20:48Z" duration-ms="256" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Flush -->
       </class> <!-- POMFramework.Test.LoginTest -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->
